@@ -1,5 +1,5 @@
 require 'sinatra'
-require "player"
+require '/Users/vijaykurian/Makers/battle/lib/player'
 
 class Battle < Sinatra::Base
   enable :sessions
@@ -20,7 +20,10 @@ class Battle < Sinatra::Base
   end
 
   get '/attack' do
-      erb :attack
+    @player1 = $player1
+    @player2 = $player2
+    Game.new.attack(@player2)
+    erb :attack
   end
 
   run! if app_file == $0
