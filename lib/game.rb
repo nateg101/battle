@@ -14,6 +14,7 @@ class Game
   end
 
   def switch_turn
+    return "GAME... OVER!" if end_game?
     @current_turn = opponent_of(current_turn)
   end
 
@@ -23,6 +24,10 @@ class Game
 
   def defender
     opponent_of(@current_turn)
+  end
+
+  def end_game?
+    self.defender.hp <= 0 ? true : false
   end
 
   private

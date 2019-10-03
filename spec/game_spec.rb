@@ -2,8 +2,8 @@ require 'game'
 
 describe Game do
   subject(:game) { described_class.new(player1, player2) }
-  let(:player1) { double :player }
-  let(:player2) { double :player }
+  let(:player1) { double :player, hp: 50, receive_damage: 40 }
+  let(:player2) { double :player, hp: 50, receive_damage: 40 }
 
   describe "#attack" do
     it "allows players to attack each other" do
@@ -35,6 +35,20 @@ describe Game do
     it 'returns defenders name after switching turns' do
       game.switch_turn
       expect(game.defender).to eq(player1)
+    end
+  end
+
+  describe '#end_game?' do
+    it 'returns false when players health full' do
+      expect(game.end_game?).to eq(false)
+    end
+
+    it 'returns true when player has no HP' do
+      allow(player2).to receive(:hp){0}
+      6.times do
+        game.attack(game.defender)
+      end
+      expect(game.end_game?).to eq(true)
     end
   end
 end
