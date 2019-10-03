@@ -45,9 +45,6 @@ describe Game do
 
     it 'returns true when player has no HP' do
       allow(player2).to receive(:hp){0}
-      6.times do
-        game.attack(game.defender)
-      end
       expect(game.end_game?).to eq(true)
     end
   end

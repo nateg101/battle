@@ -30,8 +30,17 @@ class Battle < Sinatra::Base
 
   post '/switch-turn' do
     @game = $game
-    @game.switch_turn
-    redirect ('/play')
+    if
+      @game.end_game? == true
+      redirect ('/end-game')
+    else
+      @game.switch_turn
+      redirect ('/play')
+    end
+  end
+
+  get '/end-game' do
+    "Game Over"
   end
 
   run! if app_file == $0
