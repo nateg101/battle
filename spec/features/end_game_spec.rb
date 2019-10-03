@@ -1,5 +1,6 @@
 feature 'End Game' do
   scenario 'It ends game when player has 0 hp' do
+    allow_any_instance_of(Player).to receive(:rand) {10}
     sign_in_and_play
     8.times do
       attack_return

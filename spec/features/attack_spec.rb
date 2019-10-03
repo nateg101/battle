@@ -8,10 +8,12 @@ feature 'Attack a player' do
 end
 
 feature 'Attacking player 1' do
-  scenario 'player1 attacks and reduces HP by 10' do
+  scenario 'player1 attacks and reduces HP' do
+    allow_any_instance_of(Player).to receive(:rand) {15}
     sign_in_and_play
     click_button 'Attack!'
-    expect(page).to have_content "Celine : 40HP"
+    expect(page).to have_content "Celine : 35HP"
+    expect(page).not_to have_content "Celine : 50HP"
   end
 end
 
