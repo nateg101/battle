@@ -6,6 +6,10 @@ require 'sinatra/base'
 class Battle < Sinatra::Base
   enable :sessions
 
+  before do
+    @game = Game.instance
+  end
+
   get '/' do
     erb :index
   end
@@ -13,23 +17,20 @@ class Battle < Sinatra::Base
   post '/names' do
     player1 = Player.new(params[:player1])
     player2 = Player.new(params[:player2])
-    $game = Game.new(player1, player2)
+    @game = Game.create(player1, player2)
     redirect '/play'
   end
 
   get '/play' do
-    @game = $game
     erb :play
   end
 
   get '/attack' do
-    @game = $game
     @game.attack(@game.defender)
     erb :attack
   end
 
   post '/switch-turn' do
-    @game = $game
     if
       @game.end_game? == true
       redirect ('/end-game')
