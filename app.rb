@@ -1,29 +1,37 @@
-require 'sinatra'
-require '/Users/vijaykurian/Makers/battle/lib/player'
+require_relative 'lib/player'
+require_relative 'lib/game'
+require 'sinatra/base'
+
 
 class Battle < Sinatra::Base
   enable :sessions
+
   get '/' do
     erb :index
   end
 
   post '/names' do
-    $player1 = Player.new(params[:player1])
-    $player2 = Player.new(params[:player2])
+    player1 = Player.new(params[:player1])
+    player2 = Player.new(params[:player2])
+    $game = Game.new(player1, player2)
     redirect '/play'
   end
 
   get '/play' do
-    @player1 = $player1.name
-    @player2 = $player2.name
+    @game = $game
     erb :play
   end
 
   get '/attack' do
-    @player1 = $player1
-    @player2 = $player2
-    Game.new.attack(@player2)
+    @game = $game
+    @game.attack(@game.defender)
     erb :attack
+  end
+
+  post '/switch-turn' do
+    @game = $game
+    @game.switch_turn
+    redirect ('/play')
   end
 
   run! if app_file == $0

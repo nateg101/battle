@@ -1,9 +1,9 @@
-<%= @player1 %> vs <%= @player2 %>
+<%= @game.player1.name %> vs <%= @game.player2.name %>
 
-<%= @player1 %>: 50 HP
-<%= @player2 %>: 50 HP
+<%= @game.player1.name %>: <%= @game.player1.hp %> HP
+<%= @game.player2.name %>: <%= @game.player2.hp %> HP
 
-<!-- <button type="button" onclick=href"/attack">Attack!</button> -->
+<%= @game.current_turn.name %>'s turn to attack.
 
 <form action="/attack">
 <input type="submit" value="Attack!">

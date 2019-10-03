@@ -1,3 +1,15 @@
-Your attack was successful
+<% if @game.current_turn == @game.player1 %>
+<%= @game.player1.name %>'s attack was successful
+<% else %>
+<%= @game.player2.name %>'s attack was successful
+<% end %>
 
-<%= @player2.name %> : <%= @player2.hp %>HP
+<% if @game.current_turn == @game.player1 %>
+<%= @game.player2.name %> : <%= @game.player2.hp %>HP
+<% else %>
+<%= @game.player1.name %> : <%= @game.player1.hp %>HP
+<% end %>
+
+<form action="/switch-turn" method="post">
+<input type="submit" value="Return">
+</form>
