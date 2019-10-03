@@ -10,6 +10,13 @@
 <%= @game.player1.name %> : <%= @game.player1.hp %>HP
 <% end %>
 
+
+<% if @game.end_game? == true %>
+<form action="/switch-turn" method="post">
+<input type="submit" value="Game Over">
+</form>
+<% else %>
 <form action="/switch-turn" method="post">
 <input type="submit" value="Return">
 </form>
+<% end %>
