@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 feature 'Switch turns' do
   scenario 'When you land on play page, you know its P1s turn' do

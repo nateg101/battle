@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 require_relative 'game'
 
 class Player
-
-attr_reader :name, :hp
-HIT_POINTS = 50
+  attr_reader :name, :hp
+  HIT_POINTS = 50
 
   def initialize(name)
     @name = name
@@ -19,5 +20,4 @@ HIT_POINTS = 50
   def damage
     rand(0..15)
   end
-
 end

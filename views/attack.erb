@@ -12,7 +12,7 @@
 
 
 <% if @game.end_game? == true %>
-<form action="/switch-turn" method="post">
+<form action="/end-game">
 <input type="submit" value="Game Over">
 </form>
 <% else %>

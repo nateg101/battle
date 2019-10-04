@@ -1,5 +1,6 @@
-class Game
+# frozen_string_literal: true
 
+class Game
   attr_reader :player1, :player2, :players, :current_turn
 
   def self.create(player_1, player_2)
@@ -22,7 +23,8 @@ class Game
   end
 
   def switch_turn
-    return "GAME... OVER!" if end_game?
+    return 'GAME... OVER!' if end_game?
+
     @current_turn = opponent_of(current_turn)
   end
 
@@ -35,12 +37,12 @@ class Game
   end
 
   def end_game?
-    self.defender.hp <= 0 ? true : false
+    defender.hp <= 0
   end
 
   private
 
   def opponent_of(the_player)
-    @players.select { |player| player != the_player }.first
+    @players.reject { |player| player == the_player }.first
   end
 end

@@ -1,10 +1,53 @@
-<%= @game.player1.name %> vs <%= @game.player2.name %>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Play Screen</title>
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=VT323&display=swap" rel="stylesheet">
+    <style>
+      h1 {
+        font-family: 'Press Start 2P', cursive;
+        color: #00ff00;
+        font-size: 90px;
+        text-align: center;
+      }
+      h2 {
+        font-family: 'VT323', monospace;
+        font-size: 60px;
+        text-align: justify;
+        padding: 10px;
 
-<%= @game.player1.name %>: <%= @game.player1.hp %> HP
-<%= @game.player2.name %>: <%= @game.player2.hp %> HP
+      }
+      .player1 {
+        font-family: 'VT323', monospace;
+        font-size: 60px;
+        text-align: left;
+        width: 500px;
+        margin: 1.5cm;
+        float: left;
+      }
+      .player2 {
+        font-family: 'VT323', monospace;
+        font-size: 60px;
+        text-align: right;
+        margin: 1.5cm;
+        width: 500px;
+        float: right;
+      }
+    </style>
+  </head>
+  <body>
 
-<%= @game.current_turn.name %>'s turn to attack.
+    <h1> <%= @game.player1.name %> vs <%= @game.player2.name %> </h1>
+    <div class="player1"> <%= @game.player1.name %>: <%= @game.player1.hp %> HP </div>
+    <div class="player2"> <%= @game.player2.name %>: <%= @game.player2.hp %> HP </div>
 
-<form action="/attack">
-<input type="submit" value="Attack!">
-</form>
+    <h2> <%= @game.current_turn.name %>'s turn to attack.</h2>
+
+    <form action="/attack">
+    <input type="submit" value="Attack!">
+    </form>
+
+  </body>
+</html>

@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require_relative 'lib/player'
 require_relative 'lib/game'
 require 'sinatra/base'
-
 
 class Battle < Sinatra::Base
   enable :sessions
@@ -31,18 +32,13 @@ class Battle < Sinatra::Base
   end
 
   post '/switch-turn' do
-    if
-      @game.end_game? == true
-      redirect ('/end-game')
-    else
-      @game.switch_turn
-      redirect ('/play')
-    end
+    @game.switch_turn
+    redirect '/play'
   end
 
   get '/end-game' do
     erb :end_game
   end
 
-  run! if app_file == $0
+  run! if app_file == $PROGRAM_NAME
 end

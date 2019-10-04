@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 feature 'Attack a player' do
   scenario 'player1 attacks player2' do
@@ -9,11 +10,11 @@ end
 
 feature 'Attacking player 1' do
   scenario 'player1 attacks and reduces HP' do
-    allow_any_instance_of(Player).to receive(:rand) {15}
+    allow_any_instance_of(Player).to receive(:rand) { 15 }
     sign_in_and_play
     click_button 'Attack!'
-    expect(page).to have_content "Celine : 35HP"
-    expect(page).not_to have_content "Celine : 50HP"
+    expect(page).to have_content 'Celine : 35HP'
+    expect(page).not_to have_content 'Celine : 50HP'
   end
 end
 
